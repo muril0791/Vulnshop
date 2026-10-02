@@ -1,0 +1,13 @@
+<!doctype html>
+<!-- Página "sensível" servida pelo BACKEND (recebe X-Frame-Options só em High).
+     Serve de alvo para o demo de Clickjacking (site do atacante em :4444). -->
+<html lang="pt-br"><head><meta charset="utf-8"><title>Painel sensível</title>
+<style>body{font-family:system-ui;background:#0f172a;color:#e2e8f0;padding:24px}
+button{background:#ef4444;color:#fff;border:0;padding:14px 22px;border-radius:8px;font-size:16px;cursor:pointer}</style>
+</head><body>
+  <h1>⚙️ Ação sensível da conta</h1>
+  <p>Clique para "confirmar a exclusão da conta" (simulação de alvo de clickjacking).</p>
+  <button onclick="alert('Ação sensível executada!')">Confirmar exclusão</button>
+  <p style="color:#94a3b8;font-size:13px">Em High o backend envia <code>X-Frame-Options: DENY</code> e o navegador
+  recusa exibir esta página dentro de um &lt;iframe&gt;. Em Low/Medium ela pode ser sobreposta por um site atacante.</p>
+</body></html>

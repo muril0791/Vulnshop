@@ -1,0 +1,25 @@
+{
+  "name": "vulnshop-backend",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Backend deliberadamente vulneravel do VulnShop (AMBIENTE DE TREINO)",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "dependencies": {
+    "@homebridge/node-pty-prebuilt-multiarch": "^0.14.1",
+    "@xmldom/xmldom": "^0.9.10",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "graphql": "^16.9.0",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.11.3",
+    "ws": "^8.22.0",
+    "xpath": "^0.0.34"
+  }
+}

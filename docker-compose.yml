@@ -1,0 +1,79 @@
+# ============================================================================
+#  VulnShop — orquestracao dos 3 servicos: db (MySQL), backend (Node/Express)
+#  e frontend (React/Vite).
+#
+#  AMBIENTE DE TREINO DELIBERADAMENTE VULNERAVEL.
+#  NAO EXPONHA NA INTERNET. Suba apenas localmente:  docker compose up
+#
+#  Observacao didatica: as portas ficam presas em 127.0.0.1 de proposito,
+#  para reduzir o risco de exposicao acidental na sua rede local.
+# ============================================================================
+
+services:
+  # -------------------------------------------------------------------------
+  # Banco de dados MySQL 8. Os scripts em ./db sao executados na 1a subida
+  # (pasta /docker-entrypoint-initdb.d), criando o schema e populando o seed.
+  # -------------------------------------------------------------------------
+  db:
+    image: mysql:8.0
+    container_name: vulnshop-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root       # senha fraca de proposito (treino)
+      MYSQL_DATABASE: vulnshop
+      MYSQL_USER: vulnshop
+      MYSQL_PASSWORD: vulnshop123
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./db/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql:ro
+      - vulnshop-db-data:/var/lib/mysql
+    healthcheck:
+      # o backend so sobe quando o banco responder ao ping
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  # -------------------------------------------------------------------------
+  # Backend Express (API REST + GraphQL nas fases seguintes).
+  # -------------------------------------------------------------------------
+  backend:
+    build: ./backend
+    container_name: vulnshop-backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: development
+      PORT: 4000
+      DB_HOST: db                     # nome do servico na rede docker
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: vulnshop
+      FRONTEND_ORIGIN: http://localhost:5173
+    ports:
+      - "127.0.0.1:4000:4000"
+    volumes:
+      # persiste uploads (avatares) entre reinicios — usado a partir da Fase 3
+      - ./backend/uploads:/app/uploads
+
+  # -------------------------------------------------------------------------
+  # Frontend React (servido pelo dev server do Vite para facilitar o treino).
+  # -------------------------------------------------------------------------
+  frontend:
+    build: ./frontend
+    container_name: vulnshop-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      VITE_API_URL: http://localhost:4000
+    ports:
+      - "127.0.0.1:5173:5173"
+
+volumes:
+  vulnshop-db-data:

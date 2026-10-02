@@ -1,0 +1,10 @@
+================= VulnShop — Comprovante de Compra =================
+Nota:      NF-1001
+Cliente:   Alice Souza
+Pedido:    #1
+Itens:     Notebook Pro 15, Teclado Mecanico, Fone Bluetooth Air
+Total:     R$ 5399,80
+Pagamento: aprovado
+====================================================================
+(Arquivo de exemplo do laboratorio. Use a rota de download de
+ comprovantes para praticar Directory Traversal - WSTG-ATHZ-01.)

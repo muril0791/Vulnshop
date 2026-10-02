@@ -1,0 +1,125 @@
+/* ==========================================================================
+   VulnShop — estilos (CSS puro).
+   ========================================================================== */
+:root {
+  --cor-fundo: #0f172a;
+  --cor-painel: #1e293b;
+  --cor-painel2: #172033;
+  --cor-borda: #334155;
+  --cor-texto: #e2e8f0;
+  --cor-suave: #94a3b8;
+  --cor-marca: #38bdf8;
+  --cor-preco: #4ade80;
+  --cor-erro: #f87171;
+  --cor-ok: #4ade80;
+  --cor-aviso-bg: #7f1d1d;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+}
+a { color: var(--cor-marca); text-decoration: none; }
+a:hover { text-decoration: underline; }
+h1, h2, h3 { line-height: 1.2; }
+
+/* Banner de aviso ------------------------------------------------------- */
+.aviso-treino {
+  background: var(--cor-aviso-bg); color: #fecaca; text-align: center;
+  padding: 8px 12px; font-size: 13px; font-weight: 600;
+}
+
+/* Cabecalho ------------------------------------------------------------- */
+.cabecalho {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  padding: 12px 20px; background: var(--cor-painel); border-bottom: 1px solid var(--cor-borda);
+}
+.marca { display: flex; align-items: baseline; gap: 8px; }
+.logo { font-size: 20px; font-weight: 700; color: var(--cor-marca); }
+.versao { font-size: 12px; color: var(--cor-suave); }
+.busca { display: flex; gap: 4px; }
+.busca input { background: var(--cor-fundo); color: var(--cor-texto); border: 1px solid var(--cor-borda); border-radius: 6px; padding: 6px 10px; width: 200px; }
+.busca button { background: var(--cor-borda); border: none; border-radius: 6px; color: var(--cor-texto); padding: 6px 10px; cursor: pointer; }
+.nav { display: flex; gap: 14px; flex-wrap: wrap; }
+.nav a { color: var(--cor-texto); font-size: 14px; }
+.auth-area { display: flex; align-items: center; gap: 12px; margin-left: auto; font-size: 14px; }
+.btn-link { background: none; border: none; color: var(--cor-marca); cursor: pointer; font-size: 14px; }
+
+/* Seletor de nivel ------------------------------------------------------ */
+.seletor-nivel { display: flex; align-items: center; gap: 8px; font-size: 13px; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--cor-borda); }
+.seletor-nivel select { background: var(--cor-fundo); color: var(--cor-texto); border: 1px solid var(--cor-borda); border-radius: 6px; padding: 4px 8px; }
+.nivel-low { border-color: #ef4444; box-shadow: inset 0 0 0 1px #ef4444; }
+.nivel-medium { border-color: #f59e0b; box-shadow: inset 0 0 0 1px #f59e0b; }
+.nivel-high { border-color: #22c55e; box-shadow: inset 0 0 0 1px #22c55e; }
+
+/* Conteudo -------------------------------------------------------------- */
+.conteudo { max-width: 1080px; margin: 0 auto; padding: 24px 20px 60px; }
+.status { color: var(--cor-suave); font-size: 14px; }
+.status .ok { color: var(--cor-preco); }
+.status .falha { color: var(--cor-erro); }
+.erro { color: var(--cor-erro); }
+.ok { color: var(--cor-ok); }
+.suave { color: var(--cor-suave); }
+
+/* Grade de produtos ----------------------------------------------------- */
+.grade-produtos { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-top: 18px; }
+.cartao-produto { background: var(--cor-painel); border: 1px solid var(--cor-borda); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block; }
+.cartao-produto .thumb { height: 110px; border-radius: 8px; background: linear-gradient(135deg, #334155, #0ea5e9); display: flex; align-items: center; justify-content: center; font-size: 40px; font-weight: 800; color: #0f172a; margin-bottom: 10px; }
+.cartao-produto h3 { margin: 6px 0 2px; font-size: 15px; }
+.cartao-produto .categoria { color: var(--cor-suave); font-size: 12px; margin: 0; }
+.cartao-produto .preco { color: var(--cor-preco); font-weight: 700; margin: 8px 0; }
+
+/* Formularios ----------------------------------------------------------- */
+.form { max-width: 460px; background: var(--cor-painel); border: 1px solid var(--cor-borda); border-radius: 12px; padding: 20px; }
+.form.larga { max-width: 720px; }
+label { display: block; font-size: 13px; color: var(--cor-suave); margin: 10px 0 4px; }
+input, textarea, select { font-family: inherit; }
+.campo, input[type=text], input[type=password], input[type=email], input[type=number], textarea, .form select {
+  width: 100%; background: var(--cor-fundo); color: var(--cor-texto);
+  border: 1px solid var(--cor-borda); border-radius: 6px; padding: 8px 10px; font-size: 14px;
+}
+textarea { min-height: 90px; resize: vertical; }
+.btn { background: var(--cor-marca); color: #04263a; border: none; border-radius: 8px; padding: 9px 16px; font-weight: 700; cursor: pointer; margin-top: 12px; }
+.btn.secundario { background: var(--cor-borda); color: var(--cor-texto); }
+.btn:hover { filter: brightness(1.08); }
+.linha-botoes { display: flex; gap: 10px; flex-wrap: wrap; }
+.check { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+.check input { width: auto; }
+
+/* Cartoes / caixas ------------------------------------------------------ */
+.caixa { background: var(--cor-painel); border: 1px solid var(--cor-borda); border-radius: 12px; padding: 16px; margin: 14px 0; }
+.caixa h2, .caixa h3 { margin-top: 0; }
+.dica { background: var(--cor-painel2); border-left: 3px solid var(--cor-marca); padding: 10px 12px; border-radius: 6px; font-size: 13px; color: var(--cor-suave); }
+.badge { display: inline-block; font-size: 11px; padding: 2px 7px; border-radius: 999px; background: var(--cor-borda); color: var(--cor-texto); margin-left: 6px; }
+.wstg { font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: #fbbf24; }
+
+/* Tabelas --------------------------------------------------------------- */
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { border: 1px solid var(--cor-borda); padding: 7px 9px; text-align: left; }
+th { background: var(--cor-painel2); }
+.tabela-scroll { overflow-x: auto; }
+
+/* Produto --------------------------------------------------------------- */
+.produto-detalhe { display: grid; grid-template-columns: 220px 1fr; gap: 20px; }
+.produto-detalhe .thumb { height: 200px; border-radius: 10px; background: linear-gradient(135deg, #334155, #0ea5e9); display: flex; align-items: center; justify-content: center; font-size: 64px; color: #0f172a; }
+.avaliacao { border-top: 1px solid var(--cor-borda); padding: 10px 0; }
+.avaliacao .autor { font-weight: 600; }
+.nota { color: #fbbf24; }
+
+/* Carrinho -------------------------------------------------------------- */
+.item-carrinho { display: grid; grid-template-columns: 1fr 90px 110px 40px; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--cor-borda); }
+.item-carrinho input { width: 100%; }
+.total-linha { display: flex; justify-content: space-between; margin: 6px 0; }
+.total-linha.grande { font-size: 18px; font-weight: 700; }
+
+/* Rodape ---------------------------------------------------------------- */
+.rodape { text-align: center; color: var(--cor-suave); font-size: 12px; padding: 20px; border-top: 1px solid var(--cor-borda); }
+
+/* Sobre / niveis -------------------------------------------------------- */
+.sobre { max-width: 780px; line-height: 1.6; }
+.lista-niveis { line-height: 1.9; }
+pre { background: var(--cor-painel2); padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 13px; }
+code { font-family: ui-monospace, Consolas, monospace; }

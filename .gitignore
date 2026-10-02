@@ -1,0 +1,18 @@
+# dependencias
+node_modules/
+**/node_modules/
+
+# variaveis de ambiente reais
+.env
+
+# build do frontend
+frontend/dist/
+
+# uploads gerados em runtime (avatares) — mantemos a pasta, ignoramos o conteudo
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# logs e temporarios
+*.log
+npm-debug.log*
+.DS_Store

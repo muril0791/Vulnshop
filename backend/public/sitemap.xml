@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- [WSTG-INFO-03] sitemap.xml tambem ajuda a mapear a aplicacao -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>http://localhost:5173/</loc></url>
+  <url><loc>http://localhost:5173/login</loc></url>
+  <url><loc>http://localhost:5173/admin</loc></url>
+  <url><loc>http://localhost:4000/api/produtos</loc></url>
+  <url><loc>http://localhost:4000/graphql</loc></url>
+  <url><loc>http://localhost:4000/config.js.bak</loc></url>
+</urlset>

@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="pt-br"><head><meta charset="utf-8"><title>Clickjacking</title>
+<style>body{font-family:system-ui;background:#111;color:#eee;max-width:760px;margin:40px auto;padding:0 16px;line-height:1.6}
+.alvo{position:relative;border:2px dashed #ef4444;margin-top:16px}
+iframe{width:100%;height:320px}code{background:#222;padding:2px 6px;border-radius:4px}</style>
+</head><body>
+  <h1>Clickjacking <code>[WSTG-CLNT-09]</code></h1>
+  <p>A página sensível abaixo é servida pelo backend em
+     <code>http://localhost:4000/painel-frame.html</code>. Em Low/Medium ela é
+     exibida dentro do &lt;iframe&gt; (um atacante sobreporia botões falsos). Em High
+     o backend envia <code>X-Frame-Options: DENY</code> e o navegador <b>recusa</b> exibir.</p>
+  <div class="alvo">
+    <iframe src="http://localhost:4000/painel-frame.html"></iframe>
+  </div>
+  <p style="color:#888">Se o iframe aparecer vazio/bloqueado, você está em High (correto).</p>
+</body></html>

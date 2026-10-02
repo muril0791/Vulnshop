@@ -1,0 +1,9 @@
+// [WSTG-CONF-04] Arquivo de backup/antigo esquecido e acessivel via HTTP.
+// (Nunca deixe .bak/.old servidos! Aqui vaza credenciais e segredos.)
+module.exports = {
+  db: { host: 'localhost', user: 'root', password: 'root', name: 'vulnshop' },
+  jwtSecret: 'super-secreto-trocar-em-producao-123',
+  admin: { usuario: 'admin', senha: 'admin' },
+  apiKeyPagamento: 'sk_test_51VulnShopFAKE00000000000000',
+  smtp: { host: 'smtp.exemplo.local', user: 'no-reply@vulnshop.local', pass: 'Smtp!2020' }
+};
