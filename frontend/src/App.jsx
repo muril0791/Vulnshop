@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import AvisoTreino from './components/AvisoTreino.jsx';
 import Cabecalho from './components/Cabecalho.jsx';
+import PainelLab from './components/PainelLab.jsx';
 import Home from './pages/Home.jsx';
 import Sobre from './pages/Sobre.jsx';
 import Login from './pages/Login.jsx';
@@ -26,6 +27,7 @@ export default function App() {
     <div className="app">
       <AvisoTreino />
       <Cabecalho />
+      <PainelLab />
       <main className="conteudo">
         <Routes>
           <Route path="/" element={<Home />} />

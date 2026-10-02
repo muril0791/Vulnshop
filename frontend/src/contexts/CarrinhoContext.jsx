@@ -15,7 +15,7 @@ export function CarrinhoProvider({ children }) {
     setItens((prev) => {
       const i = prev.findIndex((x) => x.produto_id === p.id);
       if (i >= 0) { const c = [...prev]; c[i] = { ...c[i], quantidade: c[i].quantidade + 1 }; return c; }
-      return [...prev, { produto_id: p.id, nome: p.nome, preco: Number(p.preco), quantidade: 1 }];
+      return [...prev, { produto_id: p.id, nome: p.nome, preco: Number(p.preco), quantidade: 1, categoria: p.categoria, imagem: p.imagem }];
     });
   }
   function atualizar(idx, campo, valor) {

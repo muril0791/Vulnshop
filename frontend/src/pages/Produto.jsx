@@ -4,6 +4,7 @@ import { api } from '../api/client.js';
 import { useAuth } from '../contexts/AuthContext.jsx';
 import { useCarrinho } from '../contexts/CarrinhoContext.jsx';
 import { imagemProduto } from '../imagens.js';
+import { Estrelas } from '../components/Icone.jsx';
 
 export default function Produto() {
   const { id } = useParams();
@@ -51,7 +52,9 @@ export default function Produto() {
         {avs.length === 0 && <p className="suave">Sem avaliacoes ainda.</p>}
         {avs.map((a) => (
           <div className="avaliacao" key={a.id}>
-            <div className="autor">{a.autor} <span className="nota">{'★'.repeat(a.nota || 0)}</span></div>
+            <div className="autor" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              {a.autor} <span className="nota"><Estrelas valor={a.nota || 0} tamanho={14} /></span>
+            </div>
             {/* [WSTG-INPV-02] comentario renderizado como HTML em Low/Medium */}
             {renderHtml
               ? <div dangerouslySetInnerHTML={{ __html: a.comentario || '' }} />
